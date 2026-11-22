@@ -135,3 +135,29 @@ if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').mat
     card.addEventListener('pointerleave', () => { card.style.transform = ''; });
   });
 }
+
+document.body.classList.add('js-ready');\n/* Open the cinematic Non's conversation panel */
+const demoModal = document.querySelector('#non-demo');
+const demoOpen = document.querySelector('[data-open-demo]');
+const demoCloseButtons = document.querySelectorAll('[data-close-demo]');
+let previousFocus = null;
+function openDemo() {
+  if (!demoModal) return;
+  previousFocus = document.activeElement;
+  demoModal.classList.add('is-open');
+  demoModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('demo-locked');
+  demoModal.querySelector('.demo-close')?.focus();
+}
+function closeDemo() {
+  if (!demoModal) return;
+  demoModal.classList.remove('is-open');
+  demoModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('demo-locked');
+  previousFocus?.focus();
+}
+demoOpen?.addEventListener('click', openDemo);
+demoCloseButtons.forEach(button => button.addEventListener('click', closeDemo));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && demoModal?.classList.contains('is-open')) closeDemo();
+});
