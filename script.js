@@ -136,7 +136,9 @@ if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').mat
   });
 }
 
-document.body.classList.add('js-ready');\n/* Open the cinematic Non's conversation panel */
+document.body.classList.add('js-ready');
+
+/* Open the cinematic Non's conversation panel */
 const demoModal = document.querySelector('#non-demo');
 const demoOpen = document.querySelector('[data-open-demo]');
 const demoCloseButtons = document.querySelectorAll('[data-close-demo]');
