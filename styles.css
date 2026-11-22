@@ -38,3 +38,67 @@ html{scroll-padding-top:calc(var(--nav-height) + 18px)}
 @keyframes ticker-drift{to{transform:translateX(-25%)}}
 @media(max-width:680px){:root{--nav-height:68px}.topbar{position:sticky}.cursor-aura{display:none}.ticker-track{animation-duration:25s}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.ticker-track{animation:none}.cursor-aura{display:none}}
+
+/* Expressive subscription emblems */
+.plan-card{isolation:isolate;transition:transform .55s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .45s}
+.plan-card:hover{box-shadow:0 24px 65px #0008,0 0 38px #a994ff1c}
+.plan-art{height:190px;overflow:visible}
+.plan-art:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;border:1px solid #ffffff0d;animation:emblem-orbit 18s linear infinite}
+.plan-emblem{position:absolute;right:7%;top:12%;width:76px;height:76px;border:1px solid #ffffff2b;border-radius:50%;display:grid;place-items:center;background:#0a0b13a8;backdrop-filter:blur(5px);z-index:4;box-shadow:0 0 30px #a994ff22;transition:transform .5s,box-shadow .5s}
+.plan-emblem:before,.plan-emblem:after{content:"";position:absolute;inset:-8px;border:1px solid #a994ff66;border-radius:50%;transform:rotate(35deg) scaleY(.38)}
+.plan-emblem:after{transform:rotate(-35deg) scaleY(.38);border-color:#d6ff7966}
+.emblem-glyph{font-size:31px;color:var(--lime);text-shadow:0 0 20px currentColor;z-index:1;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.emblem-label{position:absolute;bottom:-22px;white-space:nowrap;font:7px 'DM Mono';letter-spacing:.16em;color:#aaa7bd}
+.plan-emblem i{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--lime);box-shadow:0 0 9px var(--lime)}
+.plan-emblem i:nth-of-type(1){top:2px;left:16px}.plan-emblem i:nth-of-type(2){bottom:9px;right:1px;background:var(--violet);box-shadow:0 0 9px var(--violet)}.plan-emblem i:nth-of-type(3){bottom:0;left:12px}
+.plan-card:hover .plan-emblem{transform:scale(1.13) rotate(12deg);box-shadow:0 0 45px #a994ff66}
+.plan-card:hover .emblem-glyph{transform:rotate(-25deg) scale(1.2)}
+.planet-card:hover .mini-planet{animation:planet-throb 2.6s ease-in-out infinite}
+.giant-card:hover .giant-planet{animation:giant-turn 7s linear infinite}
+.star-card:hover .star-shape{animation:star-supernova 1.8s ease-in-out infinite}
+.black-card:hover .black-hole{animation:black-pulse 2.2s ease-in-out infinite}
+.black-card:hover .black-ring{animation:black-orbit 3.5s linear infinite}
+.plan-card:hover .plan-art:after{border-color:#a994ff66;box-shadow:0 0 30px #a994ff22}
+@keyframes emblem-orbit{to{transform:rotate(360deg)}}
+@keyframes planet-throb{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.13);filter:brightness(1.35)}}
+@keyframes giant-turn{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(5deg) scale(1.1)}}
+@keyframes star-supernova{0%,100%{transform:scale(1) rotate(0);filter:brightness(1)}45%{transform:scale(1.24) rotate(18deg);filter:brightness(1.7)}70%{transform:scale(.94) rotate(25deg);filter:brightness(1.25)}}
+@keyframes black-pulse{0%,100%{transform:scale(1);box-shadow:0 0 20px 5px #b57cff66,0 0 60px 12px #733dbb55}50%{transform:scale(1.17);box-shadow:0 0 35px 12px #d3a1ffbb,0 0 100px 28px #733dbb99}}
+@keyframes black-orbit{to{transform:rotate(335deg)}}
+/* Cinematic Non's conversation demo */
+.demo-trigger{display:flex;align-items:center;gap:15px;margin-top:28px;padding:15px 18px;width:min(100%,390px);text-align:left;color:var(--ink);background:linear-gradient(110deg,#171522,#10111b);border:1px solid #a994ff55;cursor:pointer;transition:transform .3s,border-color .3s,box-shadow .3s}
+.demo-trigger:hover{transform:translateY(-4px);border-color:var(--lime);box-shadow:0 12px 40px #a994ff22}
+.demo-play{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--violet);color:#100e1b;font-size:11px;padding-left:2px;box-shadow:0 0 20px #a994ff66}
+.demo-trigger b,.demo-trigger small{display:block}.demo-trigger b{font:9px 'DM Mono';letter-spacing:.12em}.demo-trigger small{font-size:10px;color:#9291a2;margin-top:5px}.demo-arrow{margin-left:auto;color:var(--lime)}
+.demo-modal{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:22px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.demo-modal.is-open{opacity:1;visibility:visible}
+.demo-backdrop{position:absolute;inset:0;border:0;background:#03030adf;backdrop-filter:blur(12px);cursor:pointer}
+.demo-window{position:relative;width:min(760px,100%);max-height:min(90vh,900px);overflow:auto;background:#0d0e18;border:1px solid #a994ff66;box-shadow:0 30px 120px #000c,0 0 80px #8e6bff22;transform:translateY(24px) scale(.97);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.demo-modal.is-open .demo-window{transform:translateY(0) scale(1)}
+.demo-window-top,.demo-window-foot{height:48px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font:8px 'DM Mono';letter-spacing:.13em;color:#aaa8ba}
+.demo-window-brand{display:flex;align-items:center;gap:9px}.demo-window-slash{color:var(--violet)}
+.demo-live{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.demo-close{border:0;background:none;color:#fff;font-size:27px;cursor:pointer;line-height:1}
+.demo-screen{height:180px;position:relative;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at center,#3c2c66,#11101e 50%,#080910)}
+.demo-screen-stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 15% 30%,#fff,transparent),radial-gradient(2px 2px at 75% 25%,#d6ff79,transparent),radial-gradient(1px 1px at 85% 75%,#fff,transparent),radial-gradient(1px 1px at 35% 80%,#fff,transparent);background-size:100% 100%}
+.demo-avatar{width:88px;height:88px;border:1px solid #c9b7ff99;border-radius:50%;display:grid;place-items:center;position:relative;background:radial-gradient(circle at 35% 30%,#d8c7ff,#785bb8 38%,#171326 72%);box-shadow:0 0 35px #a994ff77,0 0 0 12px #a994ff12;animation:demo-float 5s ease-in-out infinite}
+.demo-avatar span{font-size:38px;color:#fff;text-shadow:0 0 18px #fff}
+.demo-avatar i{position:absolute;inset:-14px;border:1px solid #bba4ff66;border-radius:50%;transform:scaleY(.4) rotate(35deg);animation:emblem-orbit 12s linear infinite}
+.demo-avatar i+ i{transform:scaleY(.4) rotate(-35deg);border-color:#d6ff7966}
+.demo-screen-caption{position:absolute;bottom:13px;left:18px;right:18px;display:flex;justify-content:space-between;font:7px 'DM Mono';letter-spacing:.12em;color:#b9b0d5}
+.demo-screen-caption b{color:var(--lime);font-weight:400}
+.demo-chat{padding:22px clamp(16px,4vw,34px) 28px;display:grid;gap:17px}
+.demo-chat-heading{display:flex;justify-content:space-between;gap:12px;padding-bottom:15px;border-bottom:1px solid var(--line);font:8px 'DM Mono';letter-spacing:.1em;color:#a8a5b8}
+.demo-chat-heading>span{color:#6f6d7d}
+.chat-line{max-width:88%;animation:chat-arrive .6s both}.chat-speaker{font:8px 'DM Mono';letter-spacing:.13em;color:#aaa7bd}.chat-speaker span{color:var(--lime)}
+.chat-line p{margin:7px 0 0;font-size:13px;line-height:1.65;color:#e8e5f0}
+.user-line{justify-self:end;text-align:right;padding:12px 15px;background:#1a1828;border:1px solid #ffffff12}
+.non-line{justify-self:start;padding:12px 15px;background:linear-gradient(120deg,#201a34,#12131e);border-left:2px solid var(--violet)}
+.non-line p em{color:var(--lime);font-style:normal}
+.demo-window-foot{border-top:1px solid var(--line);border-bottom:0;color:#7f7c91;font-size:7px}
+@keyframes demo-float{50%{transform:translateY(-7px) rotate(4deg)}}
+@keyframes chat-arrive{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:680px){.plan-art{height:170px}.plan-emblem{right:12%;width:65px;height:65px}.demo-modal{padding:10px}.demo-screen{height:145px}.chat-line{max-width:100%}.chat-line p{font-size:12px}.demo-window-top,.demo-window-foot{padding:0 12px}}
+@media(prefers-reduced-motion:reduce){.plan-emblem,.plan-art:after,.demo-avatar,.demo-avatar i,.chat-line{animation:none!important}}
+
+body.demo-locked{overflow:hidden}
