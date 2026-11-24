@@ -400,3 +400,86 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
  .planet-cutaway .planet-blast-ring,.planet-cutaway .planet-blast-rays,
  .planet-cutaway .planet-fragment{transition:none!important}
 }
+
+
+/* Planet hover: the solid crust is gone once the detonation opens. */
+.planet-card:hover .planet-cutaway .planet-wedge{
+  opacity:0;
+  filter:brightness(2.2);
+  transition:transform 1.15s cubic-bezier(.12,.72,.18,1),opacity .32s ease .82s,filter .5s ease;
+}
+.planet-card:not(:hover) .planet-cutaway .planet-wedge{
+  opacity:1;
+  transition:transform 1.15s cubic-bezier(.12,.72,.18,1),opacity .24s ease,filter .5s ease;
+}
+
+/* Gas giant: a rotating banded atmosphere peels away and evaporates.
+   The core is fully occluded until the gas has cleared; hover-out reverses every transition. */
+.giant-system{perspective:700px;transform-style:preserve-3d}
+.giant-core{
+  width:47px;height:47px;z-index:2;opacity:0;transform:scale(.62);
+  background:radial-gradient(circle at 32% 25%,#fff4c9 0,#f4c17a 22%,#b96b55 55%,#573b50 100%);
+  box-shadow:inset -9px -7px 14px #26152d99,0 0 20px #ffc97888,0 0 46px #e78e5c55;
+  transition:opacity .55s ease .82s,transform .95s cubic-bezier(.2,.8,.2,1) .82s,box-shadow .8s ease .82s;
+}
+.gas-shell{will-change:transform,opacity,filter;background-size:100% 220%;background-position:50% 0}
+.gas-one{
+  width:116px;height:116px;z-index:4;opacity:1;
+  background:
+    radial-gradient(ellipse at 31% 22%,rgba(255,245,216,.9),transparent 16%),
+    radial-gradient(ellipse at 35% 35%,rgba(245,209,158,.75),transparent 30%),
+    repeating-linear-gradient(176deg,#f2d3a0 0 7px,#c78c70 8px 12px,#8e5d63 13px 18px,#e8b984 19px 25px,#6d4b61 26px 31px);
+  box-shadow:inset -21px -13px 28px #21152dbb,inset 8px 5px 15px #fff0d044,0 0 28px #dba97744;
+  transition:transform 1.15s cubic-bezier(.12,.72,.2,1),opacity .72s ease .18s,filter .8s ease;
+  animation:giant-atmosphere-drift 12s linear infinite;
+}
+.gas-two{
+  width:126px;height:86px;z-index:5;opacity:.88;border:0;
+  background:repeating-linear-gradient(174deg,transparent 0 8px,#f7d9a5bb 9px 13px,#9a5e5fbb 14px 19px,transparent 20px 27px);
+  box-shadow:inset 0 0 17px #2b1a2d99,0 0 12px #f1c28a44;
+  transition:transform 1.2s cubic-bezier(.12,.72,.2,1) .06s,opacity .68s ease .12s,filter .8s ease;
+  animation:giant-band-drift 9s linear infinite;
+}
+.gas-three{
+  width:158px;height:52px;z-index:6;opacity:.78;border:6px solid #e9c18e;
+  border-top-color:#f3d7ad;border-bottom-color:#825463;border-left-color:#a66c63;border-right-color:#60445c;
+  background:transparent;filter:drop-shadow(0 0 8px #d7a87666);
+  transition:transform 1.1s cubic-bezier(.12,.72,.2,1) .1s,opacity .6s ease .1s,filter .8s ease;
+  animation:giant-ring-drift 16s linear infinite;
+}
+.gas-pull{z-index:1;transition:opacity .55s ease .3s,transform 1s ease, border-color .5s}
+.giant-card:hover .gas-one{
+  transform:translate(-73px,-30px) rotate(-38deg) scale(.7);
+  opacity:0;filter:blur(9px);
+}
+.giant-card:hover .gas-two{
+  transform:translate(78px,-42px) rotate(34deg) scale(.58);
+  opacity:0;filter:blur(11px);
+}
+.giant-card:hover .gas-three{
+  transform:translate(8px,78px) rotate(68deg) scale(.42);
+  opacity:0;filter:blur(8px);
+}
+.giant-card:hover .giant-core{
+  opacity:1;transform:scale(1.18);
+  box-shadow:inset -9px -7px 14px #26152d99,0 0 28px 9px #ffc978aa,0 0 58px 22px #e78e5c77;
+}
+.giant-card:hover .gas-pull{opacity:.9;transform:scale(.82);border-color:#e8c28a88}
+@keyframes giant-atmosphere-drift{
+  from{background-position:50% 0;filter:hue-rotate(0deg)}
+  to{background-position:50% 100%;filter:hue-rotate(7deg)}
+}
+@keyframes giant-band-drift{
+  from{background-position:0 0;rotate:-23deg}
+  to{background-position:100% 0;rotate:337deg}
+}
+@keyframes giant-ring-drift{
+  from{rotate:-20deg}
+  to{rotate:340deg}
+}
+@media(prefers-reduced-motion:reduce){
+ .gas-one,.gas-two,.gas-three{animation:none!important}
+ .giant-core,.gas-shell,.gas-pull{transition:none!important}
+ .giant-card:hover .giant-core{opacity:1;transform:scale(1.1)}
+ .giant-card:hover .gas-shell{opacity:0}
+}
