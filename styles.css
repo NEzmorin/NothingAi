@@ -166,3 +166,64 @@ body.demo-locked{overflow:hidden}
 @keyframes gas-gravity{0%,100%{box-shadow:0 0 0 0 #e8c28a22}50%{box-shadow:0 0 0 12px #e8c28a00}}
 @media(max-width:680px){.plan-art{height:175px!important}.art-caption{font-size:6px}}
 @media(prefers-reduced-motion:reduce){.planet-card:hover .planet-layer,.giant-card:hover .gas-shell,.star-card:hover .star-core,.black-card:hover .jet{animation:none!important;transition:none!important}}
+
+
+/* Professional finish */
+:root{--violet:#b5a6ff;--lime:#d7ef9a;--line:rgba(226,220,255,.12)}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:radial-gradient(ellipse at 12% 34%,rgba(75,59,130,.09),transparent 34%),radial-gradient(ellipse at 88% 78%,rgba(77,63,118,.07),transparent 31%),var(--bg)}
+::selection{background:rgba(181,166,255,.32);color:#fff}
+:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
+.topbar{padding-inline:clamp(22px,5.5vw,92px);border-bottom-color:rgba(207,194,255,.14)}
+.nav-links{gap:clamp(20px,3vw,42px);font-weight:500}
+.hero h1{font-weight:650;text-wrap:balance}
+.hero-sub{max-width:420px;letter-spacing:-.012em}
+.section-pad{padding-block:clamp(88px,9.5vw,132px)}
+.section-kicker{font-size:9px;letter-spacing:.18em}
+.intro-grid{gap:clamp(42px,8vw,110px)}
+.plans{background:linear-gradient(180deg,#0e0f19,#0a0b13)}
+.plans-head{gap:32px}
+.plan-grid{gap:16px;align-items:stretch}
+.plan-card{padding:22px 20px 20px;border-radius:4px;border-color:rgba(220,214,255,.14);background:radial-gradient(ellipse at 50% 0%,rgba(181,166,255,.075),transparent 54%),linear-gradient(155deg,#171824,#0d0e17);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.plan-card:hover{border-color:rgba(181,166,255,.66);box-shadow:0 22px 58px rgba(0,0,0,.36),0 0 34px rgba(181,166,255,.09)}
+.featured{border-color:rgba(181,166,255,.58);background:radial-gradient(ellipse at 50% 0%,rgba(181,166,255,.15),transparent 56%),linear-gradient(155deg,#211d32,#10101a)}
+.plan-name{font-size:23px;letter-spacing:-.045em}
+.plan-desc{font-size:12px;line-height:1.65;color:#a6a4b4}
+.price{font-weight:500;line-height:1;font-variant-numeric:tabular-nums}
+.plan-card li{font-size:11px;line-height:1.45;color:#c0becc}
+.plan-link{font-size:11px;font-weight:600}
+@media(max-width:680px){.section-pad{padding-block:82px}.plan-grid{gap:13px}.plan-card{padding:20px 21px}}
+
+/* Planet: explosion, exposed strata, glowing nucleus, reassembly */
+.art-planet{background:radial-gradient(ellipse at 50% 54%,rgba(103,145,212,.12),transparent 66%)}
+.planet-card .plan-art{overflow:visible!important}
+.planet-card .mini-orbit{width:188px;height:58px;border-color:rgba(160,194,255,.52);opacity:.52;z-index:0;transition:transform 1s,border-color .5s}
+.planet-card:hover .mini-orbit{transform:rotate(-8deg) scale(1.18);border-color:rgba(255,211,160,.8)}
+.planet-explosion{position:relative;z-index:1;width:210px;height:158px;display:block;overflow:visible;isolation:isolate}
+.planet-explosion:before{content:"";position:absolute;left:50%;top:50%;width:94px;height:94px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,180,91,.5),rgba(255,116,69,.16) 38%,transparent 72%);filter:blur(16px);opacity:.24}
+.planet-backlight{position:absolute;left:50%;top:50%;width:24px;height:24px;border-radius:50%;transform:translate(-50%,-50%);background:#fff5c7;box-shadow:0 0 18px 8px rgba(255,164,82,.72),0 0 48px 20px rgba(255,99,62,.26);opacity:0;z-index:1}
+.planet-layer,.planet-core{position:absolute;left:50%;top:50%;display:block;border-radius:50%;transform:translate(-50%,-50%);will-change:transform,opacity,filter}
+.layer-crust{width:108px;height:108px;z-index:4;border:1px solid rgba(208,233,255,.74);background:radial-gradient(ellipse at 27% 22%,rgba(255,255,255,.92),transparent 13%),radial-gradient(circle at 30% 26%,#dff4ff,#91c5ee 22%,#527caf 54%,#233b69 80%,#101a35);box-shadow:inset -17px -14px 26px rgba(4,13,32,.72),inset 5px 4px 13px rgba(255,255,255,.22),0 0 22px rgba(116,182,238,.38)}
+.layer-mantle{width:82px;height:82px;z-index:3;opacity:0;border:1px solid rgba(255,213,157,.78);background:radial-gradient(circle at 30% 25%,#ffe1a9,#f2a36e 34%,#cf654f 69%,#71344a);box-shadow:inset -10px -8px 16px rgba(62,22,42,.48),0 0 22px rgba(255,145,86,.38)}
+.layer-core{width:56px;height:56px;z-index:2;opacity:0;border:1px solid rgba(255,222,165,.86);background:radial-gradient(circle at 33% 28%,#fff1b7,#ffc66f 25%,#f17b43 58%,#a93639);box-shadow:inset -7px -6px 12px rgba(91,27,39,.45),0 0 24px rgba(255,140,67,.48)}
+.planet-core{width:21px;height:21px;z-index:5;opacity:0;background:radial-gradient(circle at 34% 28%,#fff,#fff3b7 30%,#ffbd63 68%,#ff7546);box-shadow:0 0 16px 5px rgba(255,207,128,.88),0 0 38px 16px rgba(255,118,61,.55)}
+.planet-shockwave{position:absolute;left:50%;top:50%;width:54px;height:54px;border:1px solid rgba(255,235,187,.95);border-radius:50%;transform:translate(-50%,-50%) scale(.25);opacity:0;z-index:6;box-shadow:0 0 18px rgba(255,162,83,.46)}
+.planet-debris{position:absolute;left:50%;top:50%;width:8px;height:13px;border-radius:2px 7px 3px 7px;background:linear-gradient(145deg,#fff0bf,#ff9d62 45%,#a83d46);box-shadow:0 0 9px rgba(255,153,94,.7);opacity:0;z-index:7;transform:translate(-50%,-50%) scale(.2)}
+.debris-1{--dx:-82px;--dy:-45px;--spin:-125deg}.debris-2{--dx:77px;--dy:-48px;--spin:155deg}.debris-3{--dx:4px;--dy:-76px;--spin:95deg}.debris-4{--dx:-9px;--dy:72px;--spin:-95deg}.debris-5{--dx:-91px;--dy:17px;--spin:210deg}.debris-6{--dx:91px;--dy:15px;--spin:-210deg}.debris-7{--dx:-59px;--dy:66px;--spin:145deg}.debris-8{--dx:62px;--dy:64px;--spin:-145deg}
+.planet-card:hover .planet-explosion:before{animation:planet-heat 4.8s ease-in-out infinite}
+.planet-card:hover .planet-backlight{animation:planet-flash 4.8s ease-in-out infinite}
+.planet-card:hover .layer-crust{animation:planet-crust-burst 4.8s cubic-bezier(.18,.72,.2,1) infinite}
+.planet-card:hover .layer-mantle{animation:planet-mantle-burst 4.8s cubic-bezier(.18,.72,.2,1) infinite}
+.planet-card:hover .layer-core{animation:planet-inner-burst 4.8s cubic-bezier(.18,.72,.2,1) infinite}
+.planet-card:hover .planet-core{animation:planet-nucleus-burst 4.8s cubic-bezier(.18,.72,.2,1) infinite}
+.planet-card:hover .planet-shockwave{animation:planet-shockwave 4.8s ease-out infinite}
+.planet-card:hover .planet-debris{animation:planet-debris-burst 4.8s ease-out infinite}
+.debris-2,.debris-6{animation-delay:.025s!important}.debris-3,.debris-7{animation-delay:.05s!important}.debris-4,.debris-8{animation-delay:.075s!important}
+@keyframes planet-crust-burst{0%,9%{transform:translate(-50%,-50%) scale(1);filter:brightness(1)}16%{transform:translate(-50%,-50%) scale(1.08);filter:brightness(1.55)}28%,68%{transform:translate(calc(-50% - 38px),calc(-50% - 5px)) rotate(-20deg) scale(.96);filter:brightness(1.16)}84%{transform:translate(-50%,-50%) rotate(4deg) scale(.96)}100%{transform:translate(-50%,-50%) scale(1)}}
+@keyframes planet-mantle-burst{0%,12%{opacity:0;transform:translate(-50%,-50%) scale(.55)}20%{opacity:1;transform:translate(calc(-50% + 35px),calc(-50% - 7px)) scale(1.02)}29%,68%{opacity:1;transform:translate(calc(-50% + 35px),calc(-50% - 7px)) scale(1)}84%{opacity:.45;transform:translate(-50%,-50%) scale(.82)}100%{opacity:0;transform:translate(-50%,-50%) scale(.55)}}
+@keyframes planet-inner-burst{0%,16%{opacity:0;transform:translate(-50%,-50%) scale(.35)}25%{opacity:1;transform:translate(calc(-50% - 5px),calc(-50% + 39px)) scale(1.04)}32%,68%{opacity:1;transform:translate(calc(-50% - 5px),calc(-50% + 39px)) scale(1)}84%{opacity:.35;transform:translate(-50%,-50%) scale(.78)}100%{opacity:0;transform:translate(-50%,-50%) scale(.35)}}
+@keyframes planet-nucleus-burst{0%,20%{opacity:0;transform:translate(-50%,-50%) scale(.15)}28%,68%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}82%{opacity:.6;transform:translate(-50%,-50%) scale(.88)}100%{opacity:0;transform:translate(-50%,-50%) scale(.15)}}
+@keyframes planet-shockwave{0%,10%{opacity:0;transform:translate(-50%,-50%) scale(.25)}15%{opacity:1;transform:translate(-50%,-50%) scale(.52)}34%{opacity:0;transform:translate(-50%,-50%) scale(2.65)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.65)}}
+@keyframes planet-debris-burst{0%,11%{opacity:0;transform:translate(-50%,-50%) scale(.2)}17%{opacity:1;transform:translate(-50%,-50%) scale(1)}34%{opacity:.95;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--spin)) scale(1)}45%,100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--spin)) scale(.45)}}
+@keyframes planet-flash{0%,10%{opacity:0;transform:translate(-50%,-50%) scale(.4)}16%{opacity:1;transform:translate(-50%,-50%) scale(1.45)}26%{opacity:.36;transform:translate(-50%,-50%) scale(2.1)}38%,100%{opacity:0;transform:translate(-50%,-50%) scale(2.1)}}
+@keyframes planet-heat{0%,10%{opacity:.18;filter:blur(16px)}17%{opacity:.95;filter:blur(24px)}30%,62%{opacity:.48;filter:blur(20px)}85%,100%{opacity:.18;filter:blur(16px)}}
+@media(prefers-reduced-motion:reduce){.planet-card:hover .planet-backlight,.planet-card:hover .layer-crust,.planet-card:hover .layer-mantle,.planet-card:hover .layer-core,.planet-card:hover .planet-core,.planet-card:hover .planet-shockwave,.planet-card:hover .planet-debris,.planet-card:hover .planet-explosion:before{animation:none!important}.planet-card:hover .layer-crust{transform:translate(-50%,-50%) translate(-38px,-5px)}.planet-card:hover .layer-mantle{opacity:1;transform:translate(-50%,-50%) translate(35px,-7px)}.planet-card:hover .layer-core{opacity:1;transform:translate(-50%,-50%) translate(-5px,39px)}.planet-card:hover .planet-core{opacity:1}}
