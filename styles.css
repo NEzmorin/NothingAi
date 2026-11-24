@@ -340,3 +340,63 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
  .planet-card:hover .planet-cutaway .planet-blast-core,.planet-card:hover .planet-cutaway .planet-blast-rays{opacity:1}
  .planet-card:hover .planet-cutaway .planet-fragment{opacity:1}
 }
+
+
+/* Final polish: keep the crust visible; reveal the blast, not nested mini-spheres.
+   Transitions (rather than one-way keyframes) make the explosion reverse on pointer leave. */
+.planet-cutaway .planet-wedge{
+  transition:transform 1.15s cubic-bezier(.12,.72,.18,1),filter .65s ease;
+  animation:none!important;
+  transform:rotate(var(--angle)) translate(0,0) scale(1);
+}
+.planet-cutaway .planet-wedge:before,
+.planet-cutaway .planet-wedge:after{
+  display:none!important;
+  content:none!important;
+}
+.planet-cutaway .planet-wedge{
+  background:
+    radial-gradient(ellipse at 31% 24%,rgba(255,255,255,.94) 0 2%,transparent 14%),
+    radial-gradient(ellipse at 28% 28%,rgba(194,228,255,.75),transparent 30%),
+    radial-gradient(circle at 35% 34%,#9bc8ec 0,#6395c4 32%,#345b89 66%,#172846 100%);
+  box-shadow:
+    inset -12px -9px 18px rgba(3,12,28,.76),
+    inset 4px 4px 12px rgba(255,255,255,.2),
+    0 0 12px rgba(131,197,255,.28);
+}
+.planet-card:hover .planet-cutaway .wedge-1{transform:rotate(calc(var(--angle) + var(--spin))) translate(var(--push-x),var(--push-y)) scale(.98);filter:brightness(1.25)}
+.planet-card:hover .planet-cutaway .wedge-2{transform:rotate(calc(var(--angle) + var(--spin))) translate(var(--push-x),var(--push-y)) scale(.98);filter:brightness(1.25)}
+.planet-card:hover .planet-cutaway .wedge-3{transform:rotate(calc(var(--angle) + var(--spin))) translate(var(--push-x),var(--push-y)) scale(.98);filter:brightness(1.25)}
+.planet-card:hover .planet-cutaway .wedge-4{transform:rotate(calc(var(--angle) + var(--spin))) translate(var(--push-x),var(--push-y)) scale(.98);filter:brightness(1.25)}
+.planet-card:hover .planet-cutaway .wedge-5{transform:rotate(calc(var(--angle) + var(--spin))) translate(var(--push-x),var(--push-y)) scale(.98);filter:brightness(1.25)}
+.planet-card:hover .planet-cutaway .wedge-6{transform:rotate(calc(var(--angle) + var(--spin))) translate(var(--push-x),var(--push-y)) scale(.98);filter:brightness(1.25)}
+.planet-cutaway .planet-blast-core{
+  transition:opacity .5s ease,transform .7s cubic-bezier(.12,.72,.18,1);
+  animation:none!important;transform:scale(.1);opacity:0;
+}
+.planet-card:hover .planet-cutaway .planet-blast-core{opacity:1;transform:scale(1.15)}
+.planet-cutaway .planet-blast-ring{
+  transition:opacity .45s ease,transform .85s cubic-bezier(.12,.72,.18,1);
+  animation:none!important;opacity:0;transform:scale(.2);
+}
+.planet-card:hover .planet-cutaway .planet-blast-ring{opacity:.9;transform:scale(2.7)}
+.planet-cutaway .planet-blast-rays{
+  transition:opacity .4s ease,transform .65s ease-out;
+  animation:none!important;opacity:0;transform:scale(.2);
+}
+.planet-card:hover .planet-cutaway .planet-blast-rays{opacity:.82;transform:scale(1.5)}
+.planet-cutaway .planet-fragment{
+  transition:opacity .35s ease,transform .9s cubic-bezier(.12,.7,.2,1);
+  animation:none!important;opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(0);
+}
+.planet-card:hover .planet-cutaway .planet-fragment{opacity:.95;transform:translate(calc(-50% + var(--fx)),calc(-50% + var(--fy))) scale(1) rotate(var(--fr))}
+.planet-cutaway .fragment-b{transition-delay:35ms}
+.planet-cutaway .fragment-c{transition-delay:70ms}
+.planet-cutaway .fragment-d{transition-delay:105ms}
+.planet-cutaway .fragment-e{transition-delay:140ms}
+.planet-card:not(:hover) .planet-cutaway .planet-fragment{transition-delay:0ms}
+@media(prefers-reduced-motion:reduce){
+ .planet-cutaway .planet-wedge,.planet-cutaway .planet-blast-core,
+ .planet-cutaway .planet-blast-ring,.planet-cutaway .planet-blast-rays,
+ .planet-cutaway .planet-fragment{transition:none!important}
+}
