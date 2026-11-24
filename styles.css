@@ -227,3 +227,116 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 @keyframes planet-flash{0%,10%{opacity:0;transform:translate(-50%,-50%) scale(.4)}16%{opacity:1;transform:translate(-50%,-50%) scale(1.45)}26%{opacity:.36;transform:translate(-50%,-50%) scale(2.1)}38%,100%{opacity:0;transform:translate(-50%,-50%) scale(2.1)}}
 @keyframes planet-heat{0%,10%{opacity:.18;filter:blur(16px)}17%{opacity:.95;filter:blur(24px)}30%,62%{opacity:.48;filter:blur(20px)}85%,100%{opacity:.18;filter:blur(16px)}}
 @media(prefers-reduced-motion:reduce){.planet-card:hover .planet-backlight,.planet-card:hover .layer-crust,.planet-card:hover .layer-mantle,.planet-card:hover .layer-core,.planet-card:hover .planet-core,.planet-card:hover .planet-shockwave,.planet-card:hover .planet-debris,.planet-card:hover .planet-explosion:before{animation:none!important}.planet-card:hover .layer-crust{transform:translate(-50%,-50%) translate(-38px,-5px)}.planet-card:hover .layer-mantle{opacity:1;transform:translate(-50%,-50%) translate(35px,-7px)}.planet-card:hover .layer-core{opacity:1;transform:translate(-50%,-50%) translate(-5px,39px)}.planet-card:hover .planet-core{opacity:1}}
+
+
+/* Planet: radial pressure blast splits the sphere into geological wedges.
+   The detonation is a one-shot animation; it stays suspended while hovered. */
+.planet-card .planet-explosion.planet-cutaway{
+  width:240px;height:178px;overflow:visible;filter:none;isolation:isolate;
+}
+.planet-cutaway .planet-wedge{
+  position:absolute;left:50%;top:50%;width:112px;height:112px;
+  margin:-56px 0 0 -56px;border-radius:50%;
+  clip-path:polygon(50% 50%,50% 0,100% 0,100% 50%);
+  transform-origin:50% 50%;
+  background:
+    radial-gradient(circle at 34% 29%,rgba(255,255,255,.9),transparent 10%),
+    radial-gradient(circle at 34% 29%,#bfe7ff 0,#76a9d6 32%,#345b89 69%,#172846 100%);
+  border:1px solid rgba(205,232,255,.8);
+  box-shadow:inset -9px -7px 15px #071326aa,0 0 14px #83c5ff33;
+  transform:rotate(var(--angle)) translate(0,0);
+  z-index:3;
+}
+.planet-cutaway .planet-wedge:before{
+  content:"";position:absolute;inset:9px;border-radius:50%;
+  background:radial-gradient(circle at 34% 29%,#ffe6ad 0,#ef9a66 40%,#a94f50 76%,#552e48 100%);
+  border:1px solid rgba(255,205,145,.9);
+  box-shadow:inset -5px -5px 9px #54263b88;
+}
+.planet-cutaway .planet-wedge:after{
+  content:"";position:absolute;inset:22px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff3bc 0,#ffc16b 48%,#e46b43 100%);
+  border:1px solid rgba(255,230,172,.95);
+  box-shadow:0 0 12px #ffad5e88;
+}
+.wedge-1{--angle:0deg;--push-x:0px;--push-y:-48px;--spin:-16deg}
+.wedge-2{--angle:60deg;--push-x:42px;--push-y:-24px;--spin:14deg}
+.wedge-3{--angle:120deg;--push-x:42px;--push-y:24px;--spin:18deg}
+.wedge-4{--angle:180deg;--push-x:0px;--push-y:48px;--spin:-12deg}
+.wedge-5{--angle:240deg;--push-x:-42px;--push-y:24px;--spin:-18deg}
+.wedge-6{--angle:300deg;--push-x:-42px;--push-y:-24px;--spin:12deg}
+.planet-cutaway .planet-blast-core{
+  position:absolute;left:50%;top:50%;width:27px;height:27px;margin:-13.5px;
+  border-radius:50%;z-index:8;opacity:0;
+  background:radial-gradient(circle,#fff 0 13%,#fff5bd 25%,#ffb54f 55%,#f45d32 78%,transparent 100%);
+  box-shadow:0 0 16px 8px #ffb34c,0 0 45px 22px #ff6a35aa,0 0 90px 38px #f14b2870;
+}
+.planet-cutaway .planet-blast-ring{
+  position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px;
+  border:2px solid #fff0b8;border-radius:50%;z-index:7;opacity:0;
+  box-shadow:0 0 20px #ffad53, inset 0 0 12px #ffcf7b;
+}
+.planet-cutaway .planet-blast-rays{
+  position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px;
+  z-index:6;opacity:0;border-radius:50%;
+  background:#fff7d5;box-shadow:0 0 24px 16px #ff9e45,0 0 58px 32px #ff552f88;
+}
+.planet-cutaway .planet-fragment{
+  position:absolute;width:9px;height:15px;left:50%;top:50%;z-index:9;
+  opacity:0;border-radius:2px 7px 2px 7px;
+  background:linear-gradient(145deg,#fff2c7,#ff9b54 48%,#a94042);
+  box-shadow:0 0 12px #ff985b;
+}
+.fragment-a{--fx:-88px;--fy:-48px;--fr:45deg}
+.fragment-b{--fx:89px;--fy:-43px;--fr:130deg}
+.fragment-c{--fx:94px;--fy:39px;--fr:210deg}
+.fragment-d{--fx:-84px;--fy:55px;--fr:-70deg}
+.fragment-e{--fx:5px;--fy:-83px;--fr:95deg}
+.planet-card:hover .planet-cutaway .planet-wedge{
+  animation:planet-wedge-split 1.15s cubic-bezier(.12,.72,.18,1) .12s forwards;
+}
+.planet-card:hover .planet-cutaway .planet-blast-core{
+  animation:planet-core-ignite .72s ease-out .12s forwards;
+}
+.planet-card:hover .planet-cutaway .planet-blast-ring{
+  animation:planet-ring-hit .9s cubic-bezier(.1,.7,.2,1) .1s forwards;
+}
+.planet-card:hover .planet-cutaway .planet-blast-rays{
+  animation:planet-rays-hit .75s ease-out .12s forwards;
+}
+.planet-card:hover .planet-cutaway .planet-fragment{
+  animation:planet-fragment-fly .9s cubic-bezier(.12,.7,.2,1) .18s forwards;
+}
+@keyframes planet-wedge-split{
+  0%{transform:rotate(var(--angle)) translate(0,0) scale(1);filter:brightness(1)}
+  12%{filter:brightness(2.2)}
+  100%{transform:rotate(calc(var(--angle) + var(--spin))) translate(var(--push-x),var(--push-y)) scale(.98);filter:brightness(1.25)}
+}
+@keyframes planet-core-ignite{
+  0%{opacity:0;transform:scale(.1)}
+  40%{opacity:1;transform:scale(1.9)}
+  100%{opacity:1;transform:scale(1.15)}
+}
+@keyframes planet-ring-hit{
+  0%{opacity:0;transform:scale(.2)}
+  28%{opacity:1}
+  100%{opacity:.9;transform:scale(2.7)}
+}
+@keyframes planet-rays-hit{
+  0%{opacity:0;transform:scale(.2)}
+  35%{opacity:1;transform:scale(2.4)}
+  100%{opacity:.82;transform:scale(1.5)}
+}
+@keyframes planet-fragment-fly{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(0)}
+  25%{opacity:1}
+  100%{opacity:.95;transform:translate(calc(-50% + var(--fx)),calc(-50% + var(--fy))) scale(1) rotate(var(--fr))}
+}
+@media(prefers-reduced-motion:reduce){
+ .planet-card:hover .planet-cutaway .planet-wedge,.planet-card:hover .planet-cutaway .planet-blast-core,
+ .planet-card:hover .planet-cutaway .planet-blast-ring,.planet-card:hover .planet-cutaway .planet-blast-rays,
+ .planet-card:hover .planet-cutaway .planet-fragment{animation:none!important}
+ .planet-card:hover .planet-cutaway .planet-wedge{transform:rotate(var(--angle)) translate(var(--push-x),var(--push-y))}
+ .planet-card:hover .planet-cutaway .planet-blast-core,.planet-card:hover .planet-cutaway .planet-blast-rays{opacity:1}
+ .planet-card:hover .planet-cutaway .planet-fragment{opacity:1}
+}
