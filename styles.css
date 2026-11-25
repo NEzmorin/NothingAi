@@ -544,3 +544,96 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
  .planet-cutaway .planet-wedge,.planet-cutaway .planet-wedge:before,.planet-cutaway .planet-wedge:after,
  .gas-one,.giant-core,.gas-particle{transition:none!important}
 }
+
+
+/* Gas Giant v2 — polar spin, dissipating atmosphere and a formed orbital smoke ring. */
+.giant-system{position:relative;width:100%;height:100%;perspective:650px;transform-style:preserve-3d}
+.giant-system .gas-one{
+  z-index:4;opacity:1;filter:none;
+  transform:scale(1) rotate(0deg);
+  transition:transform .72s cubic-bezier(.18,.72,.22,1),opacity .82s ease .28s,filter .82s ease .22s;
+  animation:giant-surface-spin 7s linear infinite;
+}
+@keyframes giant-surface-spin{
+  from{background-position:50% 0;filter:brightness(1)}
+  to{background-position:50% 100%;filter:brightness(1.08)}
+}
+.giant-system .giant-core{
+  opacity:0;transform:scale(.72);
+  transition:opacity .38s ease .68s,transform .58s cubic-bezier(.16,.8,.22,1) .68s;
+}
+.giant-system .gas-particle-field{
+  position:absolute;left:50%;top:50%;width:224px;height:132px;inset:auto;
+  z-index:6;opacity:0;pointer-events:none;
+  transform:translate(-50%,-50%) rotateX(68deg) rotateZ(-17deg) scale(.72);
+  transform-style:preserve-3d;
+  transition:opacity .42s ease .34s,transform .9s cubic-bezier(.16,.75,.2,1) .3s;
+}
+.giant-system .gas-particle{
+  left:calc(50% + var(--gx));top:calc(50% + var(--gy));
+  width:var(--size,5px);height:var(--size,5px);border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#fff8e5 0,#f6d4a0 35%,#c98b76 75%,#946277 100%);
+  box-shadow:0 0 5px 2px #f2c38b88,0 0 13px 3px #d99c7b44;
+  opacity:0;filter:blur(1.4px);
+  transform:translate(-50%,-50%) scale(.25);
+  transition:opacity .48s ease,transform .82s cubic-bezier(.16,.75,.2,1),filter .7s ease;
+}
+.particle-1{--gx:0px;--gy:-53px;--size:6px}
+.particle-2{--gx:18px;--gy:-49px;--size:4px}
+.particle-3{--gx:36px;--gy:-38px;--size:6px}
+.particle-4{--gx:49px;--gy:-18px;--size:4px}
+.particle-5{--gx:53px;--gy:4px;--size:5px}
+.particle-6{--gx:44px;--gy:27px;--size:4px}
+.particle-7{--gx:27px;--gy:43px;--size:6px}
+.particle-8{--gx:5px;--gy:51px;--size:4px}
+.particle-9{--gx:-18px;--gy:48px;--size:5px}
+.particle-10{--gx:-38px;--gy:35px;--size:4px}
+.particle-11{--gx:-51px;--gy:15px;--size:6px}
+.particle-12{--gx:-52px;--gy:-8px;--size:4px}
+.particle-13{--gx:-42px;--gy:-29px;--size:5px}
+.particle-14{--gx:-24px;--gy:-45px;--size:4px}
+.particle-15{--gx:11px;--gy:-31px;--size:3px}
+.particle-16{--gx:34px;--gy:14px;--size:3px}
+.particle-17{--gx:-13px;--gy:27px;--size:3px}
+.particle-18{--gx:-32px;--gy:-5px;--size:3px}
+.giant-card:hover .giant-system .gas-one{
+  transform:scaleX(.86) scaleY(1.34) rotate(24deg);
+  opacity:0;filter:blur(12px);
+  animation-duration:1.4s;
+}
+.giant-card:hover .giant-system .giant-core{
+  opacity:1;transform:scale(1.08);
+}
+.giant-card:hover .giant-system .gas-particle-field{
+  opacity:1;transform:translate(-50%,-50%) rotateX(68deg) rotateZ(-17deg) scale(1);
+  animation:gas-ring-orbit 7s linear infinite .9s;
+}
+.giant-card:hover .giant-system .gas-particle{
+  opacity:.96;filter:blur(.15px);
+  transform:translate(-50%,-50%) scale(1);
+}
+.giant-card:hover .giant-system .particle-2,
+.giant-card:hover .giant-system .particle-5,
+.giant-card:hover .giant-system .particle-8,
+.giant-card:hover .giant-system .particle-11,
+.giant-card:hover .giant-system .particle-14,
+.giant-card:hover .giant-system .particle-17{transition-delay:.08s}
+.giant-card:hover .giant-system .particle-3,
+.giant-card:hover .giant-system .particle-6,
+.giant-card:hover .giant-system .particle-9,
+.giant-card:hover .giant-system .particle-12,
+.giant-card:hover .giant-system .particle-15,
+.giant-card:hover .giant-system .particle-18{transition-delay:.16s}
+@keyframes gas-ring-orbit{
+  from{transform:translate(-50%,-50%) rotateX(68deg) rotateZ(-17deg) scale(1)}
+  to{transform:translate(-50%,-50%) rotateX(68deg) rotateZ(343deg) scale(1)}
+}
+.giant-card:not(:hover) .giant-system .gas-particle-field{animation:none}
+.giant-card:not(:hover) .giant-system .gas-particle{transition-delay:0s}
+.giant-card:not(:hover) .giant-system .giant-core{transition-delay:0s}
+.giant-card:not(:hover) .giant-system .gas-one{transition-delay:.08s}
+@media(prefers-reduced-motion:reduce){
+ .giant-system .gas-one{animation:none!important}
+ .giant-card:hover .giant-system .gas-particle-field{animation:none!important}
+ .giant-system .gas-one,.giant-system .giant-core,.giant-system .gas-particle-field,.giant-system .gas-particle{transition:none!important}
+}
