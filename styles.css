@@ -1354,3 +1354,8 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
   .intro h2,.plans h2,.manifesto-big,.final-cta h2{word-break:normal;overflow-wrap:normal}
   .hero-sub,.intro-text>p:not(.large-copy),.manifesto-copy p{max-width:38ch}
 }
+
+/* Restored pointer-driven letter orbit — headings and short interactive text only. */
+.char-orbit{display:inline-block!important;white-space:pre!important;vertical-align:baseline;transform-origin:center;transition:transform .22s cubic-bezier(.2,.8,.2,1),color .18s,text-shadow .18s;will-change:transform}
+.char-orbit.is-near{color:var(--lime)!important;text-shadow:0 0 14px #d6ff79aa!important}
+@media(max-width:680px){.char-orbit{transition:none}}
