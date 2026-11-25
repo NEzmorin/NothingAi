@@ -965,3 +965,75 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 @media(prefers-reduced-motion:reduce){
  .black-card:hover .accretion,.black-card:hover .jet,.black-card:hover .gravity-particle{animation:none!important}
 }
+
+
+/* BLACK HOLE v3 — centered event horizon, visibly rotating hot disk, symmetric bipolar jets. */
+.black-system{position:relative;display:block;isolation:isolate}
+.black-hole{
+ position:absolute!important;left:50%!important;top:50%!important;
+ width:57px;height:57px;margin:0!important;
+ transform:translate(-50%,-50%)!important;
+ display:grid;place-items:center;z-index:5;
+ transition:width .42s ease,height .42s ease,box-shadow .42s ease;
+}
+.black-hole div{width:43px!important;height:43px!important;border-radius:50%;background:#000!important}
+.black-card:hover .black-hole{
+ width:70px;height:70px;
+ transform:translate(-50%,-50%)!important;
+ box-shadow:0 0 0 4px #21102a,0 0 32px 12px #d6a0ff,0 0 78px 28px #8a4bdcbb,0 0 110px 38px #5729a866;
+}
+.black-card:hover .black-hole div{width:55px!important;height:55px!important}
+.accretion{
+ position:absolute;left:50%;top:50%;
+ margin:0;border-radius:50%;
+ transform:translate(-50%,-50%) rotate(-25deg);
+ transform-origin:center;
+ width:160px;height:52px;border:9px solid #a66ae2;
+ border-left-color:transparent;border-right-color:#e5c5ff;
+ filter:drop-shadow(0 0 8px #a66ae2);
+ transition:width .38s ease,height .38s ease,border-color .38s ease,filter .38s ease;
+}
+.accretion-back{
+ width:172px;height:58px;z-index:2;opacity:.75;
+ border-color:#8b5ac8;border-left-color:#d3b0f4;border-right-color:transparent;
+ transform:translate(-50%,-50%) rotate(25deg);
+}
+.accretion-front{z-index:3}
+.black-card:hover .accretion{
+ width:194px;height:66px;border-width:11px;
+ border-top-color:#ffca83;border-bottom-color:#e96b32;
+ border-left-color:#ff9a4c;border-right-color:#ffe1a5;
+ filter:drop-shadow(0 0 9px #ff9d42) drop-shadow(0 0 22px #ff6b2caa);
+ animation:disk-orbit-front 3.2s linear infinite,black-disk-heat 1.25s ease-in-out infinite alternate;
+}
+.black-card:hover .accretion-back{
+ width:208px;height:72px;
+ border-top-color:#ffad5b;border-bottom-color:#c94c27;
+ border-left-color:#ffe0a0;border-right-color:#ef7836;
+ animation:disk-orbit-back 4.6s linear infinite,black-disk-heat 1.6s ease-in-out infinite alternate;
+}
+@keyframes disk-orbit-front{
+ from{transform:translate(-50%,-50%) rotate(-25deg)}
+ to{transform:translate(-50%,-50%) rotate(335deg)}
+}
+@keyframes disk-orbit-back{
+ from{transform:translate(-50%,-50%) rotate(25deg)}
+ to{transform:translate(-50%,-50%) rotate(-335deg)}
+}
+.jet{
+ position:absolute;left:50%;width:17px;height:0;z-index:1;
+ opacity:0;pointer-events:none;
+ background:linear-gradient(90deg,transparent,#8caaff 22%,#e6f7ff 44%,#fff 50%,#d7eaff 58%,#8d9dff 80%,transparent);
+ filter:drop-shadow(0 0 7px #b5caff) drop-shadow(0 0 18px #789bff);
+ clip-path:polygon(42% 100%,58% 100%,100% 0,0 0);
+ transition:height .38s ease,opacity .3s ease;
+}
+.jet-top{left:50%;bottom:50%;top:auto;transform:translateX(-50%);transform-origin:bottom center}
+.jet-bottom{left:50%;top:50%;bottom:auto;transform:translateX(-50%) rotate(180deg);transform-origin:top center}
+.black-card:hover .jet{height:88px;opacity:1;animation:jet-fire .48s ease-in-out infinite alternate}
+.black-card:hover .jet-top{transform:translateX(-50%)}
+.black-card:hover .jet-bottom{transform:translateX(-50%) rotate(180deg);animation-delay:.12s}
+.black-card:not(:hover) .accretion{animation:accretion-drift 9s linear infinite}
+@media(prefers-reduced-motion:reduce){
+ .black-card:hover .accretion,.black-card:hover .jet{animation:none!important}
+}
