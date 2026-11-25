@@ -1359,3 +1359,9 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 .char-orbit{display:inline-block!important;white-space:pre!important;vertical-align:baseline;transform-origin:center;transition:transform .22s cubic-bezier(.2,.8,.2,1),color .18s,text-shadow .18s;will-change:transform}
 .char-orbit.is-near{color:var(--lime)!important;text-shadow:0 0 14px #d6ff79aa!important}
 @media(max-width:680px){.char-orbit{transition:none}}
+
+/* Orbit animation: animate glyphs, but never allow a word to break into vertical letters. */
+.orbit-word{display:inline-block!important;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important}
+.char-orbit{display:inline-block!important;white-space:normal!important;vertical-align:baseline;transform-origin:center;transition:transform .22s cubic-bezier(.2,.8,.2,1),color .18s,text-shadow .18s;will-change:transform}
+.char-orbit.is-near{color:var(--lime)!important;text-shadow:0 0 14px #d6ff79aa!important}
+@media(max-width:680px){.char-orbit{transition:none;will-change:auto}}
