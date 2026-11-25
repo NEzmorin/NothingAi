@@ -637,3 +637,66 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
  .giant-card:hover .giant-system .gas-particle-field{animation:none!important}
  .giant-system .gas-one,.giant-system .giant-core,.giant-system .gas-particle-field,.giant-system .gas-particle{transition:none!important}
 }
+
+
+/* Gas Giant v3 — lock the orbit to the planet's true center and accelerate the reveal. */
+.giant-system{width:190px;height:150px;position:relative;display:grid;place-items:center;overflow:visible}
+.giant-system .gas-one{
+  animation-duration:3.2s;
+  transition:transform .48s cubic-bezier(.16,.78,.2,1),opacity .48s ease .16s,filter .48s ease .12s;
+}
+.giant-card:hover .giant-system .gas-one{
+  transform:scaleX(.78) scaleY(1.32) rotate(22deg);
+  opacity:0;filter:blur(10px);
+}
+.giant-system .giant-core{
+  left:50%;top:50%;margin:0;
+  transform:translate(-50%,-50%) scale(.65);
+  transition:opacity .24s ease .48s,transform .42s cubic-bezier(.16,.8,.22,1) .48s;
+}
+.giant-card:hover .giant-system .giant-core{
+  opacity:1;transform:translate(-50%,-50%) scale(1.12);
+}
+.giant-system .gas-particle-field{
+  position:absolute!important;
+  left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;inset:auto!important;
+  width:170px!important;height:104px!important;
+  margin:0!important;z-index:7;
+  transform:translate(-50%,-50%) rotateX(62deg) rotateZ(-17deg) scale(.72);
+  transform-origin:50% 50%;
+  transition:opacity .22s ease .24s,transform .42s cubic-bezier(.16,.75,.2,1) .2s;
+}
+.giant-card:hover .giant-system .gas-particle-field{
+  opacity:1;
+  transform:translate(-50%,-50%) rotateX(62deg) rotateZ(-17deg) scale(1);
+  animation:gas-ring-spin 2.4s linear .48s infinite;
+}
+@keyframes gas-ring-spin{
+  from{rotate:0deg}
+  to{rotate:360deg}
+}
+.giant-system .gas-particle{
+  transition:opacity .34s ease,transform .42s cubic-bezier(.16,.75,.2,1),filter .35s ease;
+}
+.giant-card:hover .giant-system .gas-particle{
+  opacity:.98;filter:blur(0);
+  transform:translate(-50%,-50%) scale(1);
+}
+.giant-card:hover .giant-system .particle-2,
+.giant-card:hover .giant-system .particle-5,
+.giant-card:hover .giant-system .particle-8,
+.giant-card:hover .giant-system .particle-11,
+.giant-card:hover .giant-system .particle-14,
+.giant-card:hover .giant-system .particle-17{transition-delay:.04s}
+.giant-card:hover .giant-system .particle-3,
+.giant-card:hover .giant-system .particle-6,
+.giant-card:hover .giant-system .particle-9,
+.giant-card:hover .giant-system .particle-12,
+.giant-card:hover .giant-system .particle-15,
+.giant-card:hover .giant-system .particle-18{transition-delay:.08s}
+.giant-card:not(:hover) .giant-system .gas-particle-field{animation:none;rotate:0deg}
+.giant-card:not(:hover) .giant-system .gas-particle{transition-delay:0s}
+.giant-card:not(:hover) .giant-system .giant-core{transition-delay:0s}
+@media(prefers-reduced-motion:reduce){
+ .giant-system .gas-one,.giant-system .giant-core,.giant-system .gas-particle-field,.giant-system .gas-particle{transition:none!important;animation:none!important}
+}
