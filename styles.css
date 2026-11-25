@@ -1037,3 +1037,72 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 @media(prefers-reduced-motion:reduce){
  .black-card:hover .accretion,.black-card:hover .jet{animation:none!important}
 }
+
+
+/* BLACK HOLE v4 — one stationary, centered accretion disk and two opposite jets. */
+.black-system{
+ position:relative!important;width:190px!important;height:155px!important;
+ display:grid!important;place-items:center!important;isolation:isolate;overflow:visible!important;
+}
+.black-hole{
+ position:absolute!important;left:50%!important;top:50%!important;
+ width:57px!important;height:57px!important;margin:0!important;
+ transform:translate(-50%,-50%)!important;z-index:5!important;
+ display:grid!important;place-items:center!important;
+ transition:width .35s ease,height .35s ease,box-shadow .35s ease!important;
+}
+.black-hole div{width:43px!important;height:43px!important;transform:none!important}
+.black-card:hover .black-hole{
+ width:68px!important;height:68px!important;
+ transform:translate(-50%,-50%)!important;
+ box-shadow:0 0 0 4px #21102a,0 0 32px 12px #d6a0ff,0 0 78px 28px #8a4bdcbb!important;
+}
+.black-card:hover .black-hole div{width:54px!important;height:54px!important}
+.accretion{
+ position:absolute!important;left:50%!important;top:50%!important;
+ width:156px!important;height:48px!important;margin:0!important;
+ border:8px solid #b987ed!important;border-left-color:#8d59cb!important;
+ border-right-color:#e4caff!important;border-radius:50%!important;
+ transform:translate(-50%,-50%)!important;transform-origin:center!important;
+ z-index:3!important;opacity:1!important;
+ filter:drop-shadow(0 0 9px #b77aff)!important;
+ animation:none!important;
+ transition:width .38s ease,height .38s ease,border-color .38s ease,filter .38s ease!important;
+}
+.black-card:hover .accretion{
+ width:194px!important;height:61px!important;border-width:10px!important;
+ border-color:#ffad55!important;border-left-color:#ff7d32!important;
+ border-right-color:#ffe2a2!important;border-top-color:#ffd18a!important;
+ transform:translate(-50%,-50%)!important;
+ filter:drop-shadow(0 0 10px #ff9b3e) drop-shadow(0 0 23px #f47735cc)!important;
+ animation:none!important;
+}
+.jet{
+ position:absolute!important;left:50%!important;width:17px!important;height:0!important;
+ z-index:1!important;opacity:0!important;pointer-events:none;
+ background:linear-gradient(90deg,transparent 0%,#789cff 22%,#d8efff 42%,#fff 50%,#d8efff 58%,#789cff 82%,transparent 100%)!important;
+ filter:drop-shadow(0 0 7px #b5caff) drop-shadow(0 0 18px #789bff)!important;
+ clip-path:polygon(42% 100%,58% 100%,100% 0,0 0)!important;
+ transition:height .35s ease,opacity .25s ease!important;
+ animation:none!important;
+}
+.jet-top{
+ top:auto!important;bottom:50%!important;
+ transform:translateX(-50%)!important;transform-origin:bottom center!important;
+}
+.jet-bottom{
+ top:50%!important;bottom:auto!important;
+ transform:translateX(-50%) rotate(180deg)!important;transform-origin:top center!important;
+}
+.black-card:hover .jet{
+ height:76px!important;opacity:1!important;
+ animation:jet-fire .62s ease-in-out infinite alternate!important;
+}
+.black-card:hover .jet-top{transform:translateX(-50%)!important}
+.black-card:hover .jet-bottom{
+ top:50%!important;bottom:auto!important;
+ transform:translateX(-50%) rotate(180deg)!important;
+ animation:jet-fire .62s ease-in-out .18s infinite alternate!important;
+}
+.black-card:not(:hover) .jet{height:0!important;opacity:0!important;animation:none!important}
+.black-card:not(:hover) .accretion{animation:none!important}
