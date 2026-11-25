@@ -43,22 +43,25 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
   revealTargets.forEach(el => observer.observe(el));
 }
 
-// Letter orbit: restore pointer-reactive typography on display headings and short actions only.
+// Letter orbit: pointer-reactive letters, with each word kept together for clean wrapping.
 const orbitSelector = '.hero h1, .intro h2, .plans h2, .manifesto-big, .final-cta h2, .nav-links a, .nav-cta, .button, .plan-link, .arrow-link, .text-link';
 const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
 if (!reduceMotion && hasFinePointer) {
   document.querySelectorAll(orbitSelector).forEach(el => {
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     const nodes = [];
-    while (walker.nextNode()) if (walker.currentNode.nodeValue.length) nodes.push(walker.currentNode);
+    while (walker.nextNode()) if (walker.currentNode.nodeValue.trim()) nodes.push(walker.currentNode);
     nodes.forEach(node => {
       const fragment = document.createDocumentFragment();
-      for (const char of node.nodeValue) {
-        if (/\\s/.test(char)) { fragment.appendChild(document.createTextNode(char)); continue; }
-        const span = document.createElement('span');
-        span.className = 'char-orbit'; span.textContent = char; fragment.appendChild(span);
-      }
+      node.nodeValue.split(/(\\s+)/).forEach(part => {
+        if (/^\\s+$/.test(part)) { fragment.appendChild(document.createTextNode(part)); return; }
+        const word = document.createElement('span'); word.className = 'orbit-word';
+        for (const char of part) {
+          const letter = document.createElement('span');
+          letter.className = 'char-orbit'; letter.textContent = char; word.appendChild(letter);
+        }
+        fragment.appendChild(word);
+      });
       node.parentNode.replaceChild(fragment, node);
     });
     const letters = [...el.querySelectorAll('.char-orbit')];
@@ -82,7 +85,6 @@ if (!reduceMotion && hasFinePointer) {
     el.addEventListener('pointerleave', () => letters.forEach(letter => { letter.style.transform = ''; letter.classList.remove('is-near'); }));
   });
 }
-
 // Soft cursor aura, deliberately disabled on touch devices.
 if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   const aura = document.createElement('div');
