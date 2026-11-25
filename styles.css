@@ -756,3 +756,16 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 @media(prefers-reduced-motion:reduce){
  .giant-card:hover .giant-system .gas-particle{animation:none!important}
 }
+
+
+/* Keep the core present from the start, naturally occluded by the gas shell. */
+.giant-system .giant-core{
+  opacity:1!important;
+  transform:translate(-50%,-50%) scale(1)!important;
+  transition:transform .28s ease,box-shadow .28s ease!important;
+}
+.giant-card:hover .giant-system .giant-core{
+  opacity:1!important;
+  transform:translate(-50%,-50%) scale(1.08)!important;
+  transition:transform .28s ease,box-shadow .28s ease!important;
+}
