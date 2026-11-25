@@ -856,3 +856,112 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
  .nova-flash,.nova-spark{transition:none!important}
  .star-card:hover .nova-neutron{animation:none!important}
 }
+
+
+/* BLACK HOLE v2 — heated accretion, infalling matter and bipolar relativistic jets. */
+.black-system{isolation:isolate;overflow:visible}
+.black-hole{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  background:#010105;
+  box-shadow:0 0 0 3px #100b1b,0 0 22px 8px #9b5bdfaa,0 0 54px 19px #5b32a988;
+  transition:width .42s ease,height .42s ease,box-shadow .42s ease;
+}
+.black-hole div{background:#000;box-shadow:inset 0 0 18px #000}
+.accretion{
+  width:160px;height:52px;border-width:9px;
+  border-color:#b77bff;
+  border-top-color:#f5c9ff;
+  border-bottom-color:#6e39b5;
+  filter:drop-shadow(0 0 7px #b86aff);
+  transform-origin:center;
+  transition:width .55s ease,height .55s ease,border-color .45s ease,filter .45s ease;
+}
+.accretion-back{
+  width:174px;height:58px;
+  border-color:#8d55d1;
+  border-top-color:#ffb56d;
+  border-bottom-color:#6b36a8;
+  transform:rotate(25deg);
+  opacity:.72;
+}
+.accretion-front{
+  border-top-color:#fff0c8;border-left-color:#ff9d4f;
+  border-right-color:#ffcf8a;border-bottom-color:#d85c36;
+}
+.jet{
+  width:24px;
+  background:linear-gradient(0deg,transparent 0%,#8c6bff 20%,#d9caff 42%,#fff 50%,#b8e8ff 58%,#7a7cff 82%,transparent 100%);
+  filter:drop-shadow(0 0 8px #9e8bff) drop-shadow(0 0 20px #6e9dff);
+}
+.jet-top{bottom:50%;transform-origin:bottom center}
+.jet-bottom{top:50%;transform-origin:top center}
+.black-card:hover .black-hole{
+  width:69px;height:69px;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 0 4px #1b1028,0 0 34px 13px #d5a1ff,0 0 78px 29px #8a4bdcbb,0 0 115px 40px #5729a866;
+}
+.black-card:hover .black-hole div{width:57px;height:57px}
+.black-card:hover .accretion{
+  width:190px;height:66px;border-width:11px;
+  border-top-color:#fff0c4;border-bottom-color:#ff8a42;
+  filter:drop-shadow(0 0 10px #ffb15d) drop-shadow(0 0 24px #f47735aa);
+  animation:black-disk-spin 2.8s linear infinite,black-disk-heat 1.4s ease-in-out infinite alternate;
+}
+.black-card:hover .accretion-back{
+  width:202px;height:72px;
+  border-top-color:#ffcb8b;border-bottom-color:#c75a38;
+  animation:black-disk-spin-reverse 4.2s linear infinite,black-disk-heat 1.8s ease-in-out infinite alternate;
+}
+@keyframes black-disk-spin{to{rotate:335deg}}
+@keyframes black-disk-spin-reverse{to{rotate:-335deg}}
+@keyframes black-disk-heat{from{filter:drop-shadow(0 0 8px #ff9e50) brightness(1.05)}to{filter:drop-shadow(0 0 20px #ffd18a) brightness(1.65)}}
+.black-card:hover .jet{height:91px;opacity:1;animation:jet-fire .52s ease-in-out infinite alternate}
+.black-card:hover .jet-bottom{animation-delay:.16s}
+.gravity-field{position:absolute;inset:0;z-index:6;pointer-events:none}
+.gravity-particle{
+  position:absolute;left:50%;top:50%;width:var(--ps,3px);height:var(--ps,3px);
+  border-radius:50%;opacity:0;
+  background:radial-gradient(circle,#fff8df 0 18%,#ffc17c 48%,#e36d45 100%);
+  box-shadow:0 0 5px 2px #ffbd7a99,0 0 12px 3px #f47c4a66;
+  transform:translate(-50%,-50%) scale(.2);
+}
+.gravity-1{--sx:-102px;--sy:-58px;--ps:3px;--dur:1.15s;--delay:0s}
+.gravity-2{--sx:-80px;--sy:-82px;--ps:2px;--dur:1.35s;--delay:.12s}
+.gravity-3{--sx:-36px;--sy:-94px;--ps:4px;--dur:1.05s;--delay:.24s}
+.gravity-4{--sx:18px;--sy:-101px;--ps:2px;--dur:1.3s;--delay:.08s}
+.gravity-5{--sx:70px;--sy:-83px;--ps:3px;--dur:1.18s;--delay:.2s}
+.gravity-6{--sx:108px;--sy:-44px;--ps:2px;--dur:1.4s;--delay:.32s}
+.gravity-7{--sx:111px;--sy:8px;--ps:4px;--dur:1.1s;--delay:.04s}
+.gravity-8{--sx:83px;--sy:67px;--ps:2px;--dur:1.28s;--delay:.16s}
+.gravity-9{--sx:39px;--sy:96px;--ps:3px;--dur:1.16s;--delay:.28s}
+.gravity-10{--sx:-14px;--sy:103px;--ps:2px;--dur:1.38s;--delay:.1s}
+.gravity-11{--sx:-66px;--sy:84px;--ps:3px;--dur:1.08s;--delay:.22s}
+.gravity-12{--sx:-106px;--sy:42px;--ps:2px;--dur:1.32s;--delay:.34s}
+.gravity-13{--sx:-91px;--sy:-14px;--ps:2px;--dur:1.2s;--delay:.06s}
+.gravity-14{--sx:91px;--sy:30px;--ps:3px;--dur:1.42s;--delay:.18s}
+.gravity-15{--sx:48px;--sy:-57px;--ps:2px;--dur:1.12s;--delay:.3s}
+.gravity-16{--sx:-48px;--sy:57px;--ps:4px;--dur:1.26s;--delay:.14s}
+.gravity-17{--sx:5px;--sy:72px;--ps:2px;--dur:1.06s;--delay:.26s}
+.gravity-18{--sx:-8px;--sy:-70px;--ps:3px;--dur:1.34s;--delay:.38s}
+.gravity-19{--sx:123px;--sy:-72px;--ps:2px;--dur:1.24s;--delay:.09s}
+.gravity-20{--sx:-126px;--sy:73px;--ps:3px;--dur:1.16s;--delay:.21s}
+.gravity-21{--sx:127px;--sy:75px;--ps:2px;--dur:1.36s;--delay:.33s}
+.gravity-22{--sx:-124px;--sy:-76px;--ps:2px;--dur:1.09s;--delay:.15s}
+.gravity-23{--sx:0px;--sy:-112px;--ps:3px;--dur:1.29s;--delay:.27s}
+.gravity-24{--sx:0px;--sy:112px;--ps:2px;--dur:1.14s;--delay:.39s}
+.black-card:hover .gravity-particle{
+  opacity:1;
+  animation:gravity-fall var(--dur) cubic-bezier(.42,0,.78,.32) var(--delay) infinite;
+}
+@keyframes gravity-fall{
+  0%{opacity:0;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) scale(.35)}
+  12%{opacity:1}
+  78%{opacity:.95}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(.08)}
+}
+.black-card:not(:hover) .gravity-particle{animation:none;opacity:0}
+.black-card:not(:hover) .accretion{animation:accretion-drift 9s linear infinite}
+@media(prefers-reduced-motion:reduce){
+ .black-card:hover .accretion,.black-card:hover .jet,.black-card:hover .gravity-particle{animation:none!important}
+}
