@@ -43,7 +43,45 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
   revealTargets.forEach(el => observer.observe(el));
 }
 
-// Letter-by-letter pointer animation removed: it harmed readability and caused narrow word wrapping.
+// Letter orbit: restore pointer-reactive typography on display headings and short actions only.
+const orbitSelector = '.hero h1, .intro h2, .plans h2, .manifesto-big, .final-cta h2, .nav-links a, .nav-cta, .button, .plan-link, .arrow-link, .text-link';
+const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+if (!reduceMotion && hasFinePointer) {
+  document.querySelectorAll(orbitSelector).forEach(el => {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) if (walker.currentNode.nodeValue.length) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const fragment = document.createDocumentFragment();
+      for (const char of node.nodeValue) {
+        if (/\\s/.test(char)) { fragment.appendChild(document.createTextNode(char)); continue; }
+        const span = document.createElement('span');
+        span.className = 'char-orbit'; span.textContent = char; fragment.appendChild(span);
+      }
+      node.parentNode.replaceChild(fragment, node);
+    });
+    const letters = [...el.querySelectorAll('.char-orbit')];
+    const isDisplay = el.matches('h1,h2,.manifesto-big');
+    el.addEventListener('pointermove', event => {
+      const radius = isDisplay ? 92 : 58;
+      letters.forEach(letter => {
+        const rect = letter.getBoundingClientRect();
+        const dx = rect.left + rect.width / 2 - event.clientX;
+        const dy = rect.top + rect.height / 2 - event.clientY;
+        const distance = Math.hypot(dx, dy);
+        if (distance >= radius) { letter.style.transform = ''; letter.classList.remove('is-near'); return; }
+        const strength = 1 - distance / radius, angle = Math.atan2(dy, dx), tangent = angle + Math.PI / 2;
+        const push = strength * (isDisplay ? 15 : 9), radial = strength * 5;
+        const x = Math.cos(tangent) * push + Math.cos(angle) * radial;
+        const y = Math.sin(tangent) * push + Math.sin(angle) * radial;
+        letter.style.transform = `translate3d(${x}px,${y}px,0) rotate(${strength * 17 * (dx >= 0 ? 1 : -1)}deg) scale(${1 - strength * .16})`;
+        letter.classList.add('is-near');
+      });
+    });
+    el.addEventListener('pointerleave', () => letters.forEach(letter => { letter.style.transform = ''; letter.classList.remove('is-near'); }));
+  });
+}
 
 // Soft cursor aura, deliberately disabled on touch devices.
 if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
