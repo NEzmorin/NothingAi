@@ -804,3 +804,55 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 @media(prefers-reduced-motion:reduce){
  .nova-progenitor,.nova-fragment,.nova-neutron,.nova-shock,.nova-debris,.nova-rays,.nova-halo{transition:none!important}
 }
+
+
+/* Supernova polish: central flash, fine stellar sparks, living neutron star. */
+.nova-flash{
+  position:absolute;left:50%;top:50%;width:34px;height:34px;border-radius:50%;
+  z-index:6;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.08);
+  background:radial-gradient(circle,#fff 0 5%,#fff9d8 13%,#ffe7a0 27%,#ffad60 43%,rgba(255,111,65,.35) 62%,transparent 74%);
+  filter:blur(1.5px);
+  transition:opacity .22s ease,transform .82s cubic-bezier(.12,.72,.18,1);
+}
+.nova-flash:after{
+  content:"";position:absolute;inset:-8px;border:2px solid rgba(255,238,190,.95);
+  border-radius:50%;box-shadow:0 0 12px #fff0bd,0 0 28px #ff9f5c88;
+}
+.star-card:hover .nova-flash{opacity:1;transform:translate(-50%,-50%) scale(4.8)}
+.nova-spark-field{position:absolute;inset:0;z-index:8;pointer-events:none}
+.nova-spark{
+  position:absolute;left:50%;top:50%;display:block;width:var(--spark-size,2px);height:var(--spark-size,2px);
+  border-radius:50%;opacity:0;background:#fff6d7;
+  box-shadow:0 0 4px 1px #fff1c2,0 0 10px 2px #ffb56c;
+  transform:translate(-50%,-50%) scale(.1);
+  transition:transform .72s cubic-bezier(.12,.72,.18,1),opacity .3s ease;
+}
+.spark-1{--sx:-105px;--sy:-49px;--spark-size:2px}.spark-2{--sx:-91px;--sy:-76px;--spark-size:3px}
+.spark-3{--sx:-58px;--sy:-91px;--spark-size:2px}.spark-4{--sx:-25px;--sy:-103px;--spark-size:2px}
+.spark-5{--sx:18px;--sy:-99px;--spark-size:3px}.spark-6{--sx:57px;--sy:-86px;--spark-size:2px}
+.spark-7{--sx:91px;--sy:-61px;--spark-size:2px}.spark-8{--sx:108px;--sy:-23px;--spark-size:3px}
+.spark-9{--sx:101px;--sy:28px;--spark-size:2px}.spark-10{--sx:78px;--sy:66px;--spark-size:2px}
+.spark-11{--sx:42px;--sy:93px;--spark-size:3px}.spark-12{--sx:1px;--sy:105px;--spark-size:2px}
+.spark-13{--sx:-43px;--sy:94px;--spark-size:2px}.spark-14{--sx:-82px;--sy:67px;--spark-size:3px}
+.spark-15{--sx:-108px;--sy:23px;--spark-size:2px}.spark-16{--sx:-76px;--sy:-16px;--spark-size:2px}
+.spark-17{--sx:-37px;--sy:-48px;--spark-size:2px}.spark-18{--sx:34px;--sy:-48px;--spark-size:3px}
+.spark-19{--sx:70px;--sy:8px;--spark-size:2px}.spark-20{--sx:-16px;--sy:51px;--spark-size:2px}
+.star-card:hover .nova-spark{
+  opacity:.95;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) scale(1);
+}
+.star-card:hover .spark-2,.star-card:hover .spark-6,.star-card:hover .spark-10,.star-card:hover .spark-14,.star-card:hover .spark-18{transition-delay:.06s}
+.star-card:hover .spark-3,.star-card:hover .spark-7,.star-card:hover .spark-11,.star-card:hover .spark-15,.star-card:hover .spark-19{transition-delay:.12s}
+.star-card:hover .spark-4,.star-card:hover .spark-8,.star-card:hover .spark-12,.star-card:hover .spark-16,.star-card:hover .spark-20{transition-delay:.18s}
+.star-card:hover .nova-neutron{
+  animation:neutron-pulse 2.1s ease-in-out .35s infinite;
+}
+@keyframes neutron-pulse{
+  0%,100%{transform:translate(-50%,-50%) translateY(0) scale(1);filter:brightness(1);box-shadow:0 0 12px 5px #c9edff,0 0 30px 13px #72bfffbb,0 0 55px 20px #688bff66}
+  50%{transform:translate(-50%,-50%) translateY(-3px) scale(1.08);filter:brightness(1.65);box-shadow:0 0 17px 7px #e2f8ff,0 0 39px 18px #8bd5ffdd,0 0 68px 26px #789eff99}
+}
+.star-card:not(:hover) .nova-neutron{animation:none}
+.star-card:not(:hover) .nova-flash,.star-card:not(:hover) .nova-spark{transition-delay:0s}
+@media(prefers-reduced-motion:reduce){
+ .nova-flash,.nova-spark{transition:none!important}
+ .star-card:hover .nova-neutron{animation:none!important}
+}
