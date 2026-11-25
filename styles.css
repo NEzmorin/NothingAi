@@ -700,3 +700,59 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 @media(prefers-reduced-motion:reduce){
  .giant-system .gas-one,.giant-system .giant-core,.giant-system .gas-particle-field,.giant-system .gas-particle{transition:none!important;animation:none!important}
 }
+
+
+/* Gas Giant v4: the orbital path is fixed; every gas particle travels independently. */
+.giant-system .gas-particle-field{
+  left:50%!important;top:50%!important;
+  width:170px!important;height:104px!important;
+  transform:translate(-50%,-50%) rotateX(62deg) rotateZ(-17deg)!important;
+  transform-origin:50% 50%;
+  animation:none!important;
+}
+.giant-card:hover .giant-system .gas-particle-field{
+  transform:translate(-50%,-50%) rotateX(62deg) rotateZ(-17deg)!important;
+  animation:none!important;
+}
+.giant-system .gas-particle{
+  left:50%!important;top:50%!important;
+  width:var(--size,5px);height:var(--size,5px);
+  transform:translate(-50%,-50%) scale(.2);
+  transform-origin:50% 50%;
+  animation:none;
+}
+.giant-card:hover .giant-system .gas-particle{
+  opacity:.98;filter:blur(0);
+  animation:gas-particle-orbit var(--orbit-speed,2.4s) linear var(--orbit-delay,0s) infinite;
+}
+@keyframes gas-particle-orbit{
+  from{transform:translate(-50%,-50%) rotate(0deg) translateX(var(--orbit-radius,76px)) scale(1)}
+  to{transform:translate(-50%,-50%) rotate(360deg) translateX(var(--orbit-radius,76px)) scale(1)}
+}
+/* Phase offsets make the stream continuous instead of a synchronized dotted wheel. */
+.gas-particle-field .particle-1{--orbit-radius:78px;--orbit-speed:2.35s;--orbit-delay:-.08s}
+.gas-particle-field .particle-2{--orbit-radius:75px;--orbit-speed:2.55s;--orbit-delay:-.42s}
+.gas-particle-field .particle-3{--orbit-radius:81px;--orbit-speed:2.2s;--orbit-delay:-.76s}
+.gas-particle-field .particle-4{--orbit-radius:73px;--orbit-speed:2.48s;--orbit-delay:-1.1s}
+.gas-particle-field .particle-5{--orbit-radius:80px;--orbit-speed:2.65s;--orbit-delay:-1.44s}
+.gas-particle-field .particle-6{--orbit-radius:76px;--orbit-speed:2.3s;--orbit-delay:-1.78s}
+.gas-particle-field .particle-7{--orbit-radius:83px;--orbit-speed:2.52s;--orbit-delay:-2.12s}
+.gas-particle-field .particle-8{--orbit-radius:74px;--orbit-speed:2.28s;--orbit-delay:-.26s}
+.gas-particle-field .particle-9{--orbit-radius:79px;--orbit-speed:2.58s;--orbit-delay:-.6s}
+.gas-particle-field .particle-10{--orbit-radius:72px;--orbit-speed:2.38s;--orbit-delay:-.94s}
+.gas-particle-field .particle-11{--orbit-radius:82px;--orbit-speed:2.62s;--orbit-delay:-1.28s}
+.gas-particle-field .particle-12{--orbit-radius:77px;--orbit-speed:2.32s;--orbit-delay:-1.62s}
+.gas-particle-field .particle-13{--orbit-radius:84px;--orbit-speed:2.46s;--orbit-delay:-1.96s}
+.gas-particle-field .particle-14{--orbit-radius:74px;--orbit-speed:2.7s;--orbit-delay:-2.3s}
+.gas-particle-field .particle-15{--orbit-radius:80px;--orbit-speed:2.25s;--orbit-delay:-.48s}
+.gas-particle-field .particle-16{--orbit-radius:73px;--orbit-speed:2.56s;--orbit-delay:-.82s}
+.gas-particle-field .particle-17{--orbit-radius:81px;--orbit-speed:2.34s;--orbit-delay:-1.16s}
+.gas-particle-field .particle-18{--orbit-radius:76px;--orbit-speed:2.64s;--orbit-delay:-1.5s}
+.giant-card:not(:hover) .giant-system .gas-particle{
+  animation:none!important;
+  transform:translate(-50%,-50%) scale(.2);
+  opacity:0;
+}
+@media(prefers-reduced-motion:reduce){
+ .giant-card:hover .giant-system .gas-particle{animation:none!important}
+}
