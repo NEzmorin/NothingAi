@@ -1313,3 +1313,44 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 }
 /* Remove the detached white scratch; lensing is represented by the curved disk itself. */
 .black-system .black-hole::before{content:none!important}
+
+
+/* Readability pass: keep words and sentences natural at every viewport. */
+.hero-side-note{
+  writing-mode:horizontal-tb!important;
+  letter-spacing:.12em!important;
+  white-space:nowrap!important;
+  right:5.5vw!important;
+  top:auto!important;
+  bottom:8%!important;
+  transform:none!important;
+  font-size:9px!important;
+}
+.char-orbit{
+  display:inline!important;
+  white-space:normal!important;
+  transform:none!important;
+  transition:none!important;
+  will-change:auto!important;
+}
+.char-orbit.is-near{color:inherit!important;text-shadow:none!important}
+.hero-sub,.intro-text>p,.plans-head>p,.plan-desc,.plan-card li,.manifesto-copy p,.demo-trigger small{
+  word-break:normal;
+  overflow-wrap:break-word;
+  hyphens:auto;
+}
+.hero-sub,.intro-text>p:not(.large-copy),.manifesto-copy p{
+  max-width:62ch;
+  letter-spacing:normal;
+}
+.large-copy{letter-spacing:-.025em!important;word-spacing:normal}
+.eyebrow,.section-kicker,.hero-foot,.art-label,.specimen-meta,.plan-top,.plans-note,.cta-coordinate,.footer>span,.back-top{
+  letter-spacing:.11em;
+}
+.plan-name,.plan-desc,.plan-card li,.plan-link,.price{word-break:normal;overflow-wrap:normal}
+@media(max-width:680px){
+  .hero-side-note{display:none!important}
+  .hero h1{letter-spacing:-.065em}
+  .intro h2,.plans h2,.manifesto-big,.final-cta h2{word-break:normal;overflow-wrap:normal}
+  .hero-sub,.intro-text>p:not(.large-copy),.manifesto-copy p{max-width:38ch}
+}
