@@ -43,70 +43,7 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
   revealTargets.forEach(el => observer.observe(el));
 }
 
-// Individual letters react to the pointer on links AND large display typography.
-const orbitTargets = document.querySelectorAll(
-  '.nav-links a, .nav-cta, .button, .plan-link, .arrow-link, .text-link, .hero h1, .intro h2, .plans h2, .manifesto-big, .final-cta h2, .large-copy'
-);
-const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-if (!reduceMotion && hasFinePointer) {
-  orbitTargets.forEach(el => {
-    // Wrap text nodes only; existing styled spans (hollow/accent/serif) stay intact.
-    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-    const textNodes = [];
-    while (walker.nextNode()) {
-      if (walker.currentNode.nodeValue.trim()) textNodes.push(walker.currentNode);
-    }
-    textNodes.forEach(node => {
-      const fragment = document.createDocumentFragment();
-      for (const char of node.nodeValue) {
-        if (char === ' ' || char === '\\n') {
-          fragment.appendChild(document.createTextNode(char));
-          continue;
-        }
-        const letter = document.createElement('span');
-        letter.className = 'char-orbit';
-        letter.textContent = char;
-        fragment.appendChild(letter);
-      }
-      node.parentNode.replaceChild(fragment, node);
-    });
-
-    const letters = [...el.querySelectorAll('.char-orbit')];
-    el.addEventListener('pointermove', event => {
-      const radius = el.matches('h1,h2,.manifesto-big,.large-copy') ? 105 : 62;
-      letters.forEach(letter => {
-        const rect = letter.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dx = cx - event.clientX;
-        const dy = cy - event.clientY;
-        const distance = Math.hypot(dx, dy);
-        if (distance < radius) {
-          const strength = 1 - distance / radius;
-          const angle = Math.atan2(dy, dx);
-          // Tangential movement creates the feeling of letters orbiting the pointer.
-          const tangent = angle + Math.PI / 2;
-          const push = strength * (el.matches('h1,h2,.manifesto-big,.large-copy') ? 23 : 12);
-          const radial = strength * 7;
-          const x = Math.cos(tangent) * push + Math.cos(angle) * radial;
-          const y = Math.sin(tangent) * push + Math.sin(angle) * radial;
-          letter.style.transform = `translate3d(${x}px,${y}px,0) rotate(${strength * 24 * (dx >= 0 ? 1 : -1)}deg) scale(${1 - strength * .28})`;
-          letter.classList.add('is-near');
-        } else {
-          letter.style.transform = '';
-          letter.classList.remove('is-near');
-        }
-      });
-    });
-    el.addEventListener('pointerleave', () => {
-      letters.forEach(letter => {
-        letter.style.transform = '';
-        letter.classList.remove('is-near');
-      });
-    });
-  });
-}
+// Letter-by-letter pointer animation removed: it harmed readability and caused narrow word wrapping.
 
 // Soft cursor aura, deliberately disabled on touch devices.
 if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
