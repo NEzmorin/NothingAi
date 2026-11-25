@@ -769,3 +769,38 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
   transform:translate(-50%,-50%) scale(1.08)!important;
   transition:transform .28s ease,box-shadow .28s ease!important;
 }
+
+
+/* STAR / SUPERNOVA — a stellar shell detonates into a neutron star remnant. */
+.art-star{background:radial-gradient(ellipse at 50% 52%,rgba(255,139,69,.13),transparent 67%)}
+.art-star .nova-system{position:relative;width:220px;height:158px;display:grid;place-items:center;isolation:isolate;overflow:visible}
+.nova-halo{position:absolute;left:50%;top:50%;width:104px;height:104px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff5c8aa 0,rgba(255,135,62,.34) 38%,transparent 72%);filter:blur(13px);opacity:.55;transition:opacity .35s,transform .6s}
+.nova-progenitor{position:absolute;left:50%;top:50%;width:76px;height:76px;border-radius:50%;z-index:4;transform:translate(-50%,-50%);background:radial-gradient(circle at 33% 25%,#fff9d9 0 5%,#ffe8a2 14%,#ffbd60 36%,#ef713f 67%,#8f3442 100%);box-shadow:inset -12px -9px 18px #762c3c88,0 0 24px 9px #ffb75b99,0 0 52px 20px #f56d3d55;transition:transform .55s cubic-bezier(.16,.8,.2,1),opacity .35s,filter .35s}
+.nova-fragments{position:absolute;inset:0;z-index:5;pointer-events:none}
+.nova-fragment{position:absolute;left:50%;top:50%;display:block;width:43px;height:62px;border-radius:48% 48% 38% 38%;opacity:0;transform:translate(-50%,-50%) rotate(var(--rot)) scale(.18);transform-origin:center;background:linear-gradient(145deg,#fff4bd 0%,#ffd17d 19%,#ff914d 42%,#d94d42 72%,#682b48 100%);box-shadow:inset -7px -5px 12px #67283e88,0 0 13px #ff9b5a99,0 0 26px #ff623c55;clip-path:polygon(50% 0,86% 15%,100% 62%,69% 100%,25% 87%,0 38%,22% 13%);transition:transform .9s cubic-bezier(.12,.72,.18,1),opacity .42s ease,filter .6s}
+.fragment-1{--dx:-75px;--dy:-43px;--rot:-38deg}.fragment-2{--dx:-34px;--dy:-78px;--rot:15deg}.fragment-3{--dx:24px;--dy:-76px;--rot:54deg}.fragment-4{--dx:76px;--dy:-37px;--rot:82deg}.fragment-5{--dx:83px;--dy:24px;--rot:120deg}.fragment-6{--dx:43px;--dy:70px;--rot:165deg}.fragment-7{--dx:-20px;--dy:78px;--rot:205deg}.fragment-8{--dx:-78px;--dy:35px;--rot:245deg}.fragment-9{--dx:-53px;--dy:-4px;--rot:285deg}.fragment-10{--dx:52px;--dy:3px;--rot:325deg}
+.nova-neutron{position:absolute;left:50%;top:50%;width:29px;height:29px;border-radius:50%;z-index:3;opacity:0;transform:translate(-50%,-50%) scale(.35);background:radial-gradient(circle at 32% 25%,#fff 0 8%,#e5f7ff 20%,#9edbff 43%,#5688db 68%,#242b69 100%);box-shadow:0 0 12px 5px #c9edff,0 0 30px 13px #72bfffbb,0 0 55px 20px #688bff66;transition:opacity .3s ease .48s,transform .5s cubic-bezier(.16,.8,.22,1) .48s}
+.nova-neutron span{position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;transform:translate(-50%,-50%);background:#fff;box-shadow:0 0 9px 4px #fff}
+.nova-shock{position:absolute;left:50%;top:50%;width:42px;height:42px;border:1px solid #fff0c7;border-radius:50%;z-index:2;opacity:0;transform:translate(-50%,-50%) scale(.2);box-shadow:0 0 15px #ffb76b66;transition:transform .85s cubic-bezier(.12,.72,.18,1),opacity .35s}
+.nova-shock.shock-two{width:65px;height:65px;border-color:#ff9b6a}.nova-shock.shock-three{width:88px;height:88px;border-color:#9ddcff88}
+.nova-debris-field{position:absolute;inset:0;z-index:7;pointer-events:none}
+.nova-debris{position:absolute;left:50%;top:50%;width:3px;height:8px;border-radius:50%;opacity:0;background:linear-gradient(#fff9d7,#ffb45f 50%,#d64b47);box-shadow:0 0 8px #ff9b5b;transform:translate(-50%,-50%) scale(.2);transition:transform .8s cubic-bezier(.12,.72,.18,1),opacity .3s}
+.debris-1{--dx:-99px;--dy:-60px}.debris-2{--dx:-64px;--dy:-79px}.debris-3{--dx:-13px;--dy:-91px}.debris-4{--dx:44px;--dy:-83px}.debris-5{--dx:96px;--dy:-48px}.debris-6{--dx:103px;--dy:11px}.debris-7{--dx:73px;--dy:72px}.debris-8{--dx:18px;--dy:91px}.debris-9{--dx:-43px;--dy:82px}.debris-10{--dx:-100px;--dy:39px}.debris-11{--dx:-85px;--dy:-8px}.debris-12{--dx:5px;--dy:55px}
+.nova-rays{position:absolute;left:50%;top:50%;width:132px;height:132px;border-radius:50%;border:1px solid #ffdca055;box-shadow:0 0 0 14px #ffbd6810,0 0 0 30px #ffbd6808;opacity:.35;transform:translate(-50%,-50%);transition:transform .7s,opacity .4s}
+.star-card:hover .nova-halo{opacity:1;transform:translate(-50%,-50%) scale(1.65)}
+.star-card:hover .nova-progenitor{opacity:0;filter:brightness(2.3) blur(5px);transform:translate(-50%,-50%) scale(1.65)}
+.star-card:hover .nova-fragment{opacity:1;filter:brightness(1.2);transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rot)) scale(1)}
+.star-card:hover .nova-neutron{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.star-card:hover .nova-shock{opacity:.9;transform:translate(-50%,-50%) scale(2.9)}
+.star-card:hover .shock-two{transition-delay:.1s;transform:translate(-50%,-50%) scale(2.45)}
+.star-card:hover .shock-three{transition-delay:.2s;transform:translate(-50%,-50%) scale(2.05)}
+.star-card:hover .nova-debris{opacity:.95;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1)}
+.star-card:hover .nova-rays{opacity:.8;transform:translate(-50%,-50%) scale(1.45) rotate(18deg)}
+.star-card:hover .fragment-2,.star-card:hover .fragment-5,.star-card:hover .fragment-8{transition-delay:.035s}
+.star-card:hover .fragment-3,.star-card:hover .fragment-6,.star-card:hover .fragment-9{transition-delay:.07s}
+.star-card:hover .fragment-4,.star-card:hover .fragment-7,.star-card:hover .fragment-10{transition-delay:.105s}
+.star-card:not(:hover) .nova-neutron,.star-card:not(:hover) .nova-progenitor{transition-delay:0s}
+.star-card:not(:hover) .nova-fragment,.star-card:not(:hover) .nova-debris,.star-card:not(:hover) .nova-shock{transition-delay:0s}
+@media(prefers-reduced-motion:reduce){
+ .nova-progenitor,.nova-fragment,.nova-neutron,.nova-shock,.nova-debris,.nova-rays,.nova-halo{transition:none!important}
+}
