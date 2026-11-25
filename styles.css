@@ -1232,3 +1232,84 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 .black-card:not(:hover) .black-system .jet-bottom{
  height:0!important;opacity:0!important;animation:none!important;
 }
+
+
+/* BLACK HOLE v7 — rebuild the scene as a single torus with clear depth ordering. */
+.black-system{
+ position:relative!important;display:block!important;
+ width:190px!important;height:155px!important;
+ isolation:isolate!important;overflow:visible!important;
+}
+.black-system .accretion{
+ position:absolute!important;left:50%!important;top:50%!important;
+ width:190px!important;height:82px!important;margin:0!important;
+ border:0!important;border-radius:50%!important;
+ transform:translate(-50%,-50%) rotate(-27deg) scaleY(.55)!important;
+ background:transparent!important;box-shadow:none!important;filter:none!important;
+ z-index:2!important;overflow:visible!important;animation:none!important;
+}
+.black-system .accretion::before,
+.black-system .accretion::after{
+ content:""!important;position:absolute!important;inset:0!important;
+ width:100%!important;height:100%!important;border:0!important;border-radius:50%!important;
+ background:radial-gradient(ellipse at center,
+  transparent 0 27%,#fff0c4 29%,#ffc16e 34%,#ff8a42 44%,
+  #d95735 58%,#8c3c55 68%,transparent 75%)!important;
+ box-shadow:0 0 12px #ff9d4c88,0 0 28px #ff713955!important;
+ transform:none!important;filter:none!important;
+}
+.black-system .accretion::before{
+ z-index:1!important;clip-path:inset(0 0 52% 0)!important;
+}
+.black-system .accretion::after{
+ z-index:7!important;clip-path:inset(52% 0 0 0)!important;
+}
+.black-system .black-hole{
+ position:absolute!important;left:50%!important;top:50%!important;
+ width:66px!important;height:66px!important;margin:0!important;
+ transform:translate(-50%,-50%)!important;z-index:5!important;
+ display:grid!important;place-items:center!important;
+}
+.black-system .black-hole div{width:55px!important;height:55px!important}
+.black-card:hover .black-system .accretion{
+ width:210px!important;height:91px!important;
+ transform:translate(-50%,-50%) rotate(-27deg) scaleY(.55)!important;
+}
+.black-card:hover .black-system .accretion::before,
+.black-card:hover .black-system .accretion::after{
+ background:radial-gradient(ellipse at center,
+  transparent 0 26%,#fff7d5 28%,#ffd38c 34%,#ff9b48 44%,
+  #ef6935 58%,#a9433b 69%,transparent 76%)!important;
+ box-shadow:0 0 16px #ffb15c,0 0 34px #ff753f99!important;
+}
+/* Both jets are above the disk and hole, and begin just beyond opposite poles. */
+.black-system .jet-top,
+.black-system .jet-bottom{
+ position:absolute!important;left:50%!important;right:auto!important;
+ width:17px!important;height:0!important;margin:0!important;
+ opacity:0!important;z-index:10!important;
+ background:linear-gradient(90deg,transparent,#82aaff 20%,#dff5ff 42%,#fff 50%,#dff5ff 58%,#82aaff 82%,transparent)!important;
+ clip-path:polygon(38% 0,62% 0,100% 100%,0 100%)!important;
+ filter:drop-shadow(0 0 7px #b8d7ff) drop-shadow(0 0 18px #789dff)!important;
+ transition:height .3s ease,opacity .25s ease!important;
+}
+.black-system .jet-top{
+ top:auto!important;bottom:calc(50% + 32px)!important;
+ transform:translateX(-50%)!important;transform-origin:bottom center!important;
+}
+.black-system .jet-bottom{
+ top:calc(50% + 32px)!important;bottom:auto!important;
+ transform:translateX(-50%) rotate(180deg)!important;transform-origin:top center!important;
+}
+.black-card:hover .black-system .jet-top,
+.black-card:hover .black-system .jet-bottom{
+ height:68px!important;opacity:1!important;
+ animation:jet-fire .62s ease-in-out infinite alternate!important;
+}
+.black-card:hover .black-system .jet-bottom{animation-delay:.18s!important}
+.black-card:not(:hover) .black-system .jet-top,
+.black-card:not(:hover) .black-system .jet-bottom{
+ height:0!important;opacity:0!important;animation:none!important;
+}
+/* Remove the detached white scratch; lensing is represented by the curved disk itself. */
+.black-system .black-hole::before{content:none!important}
