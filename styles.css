@@ -1106,3 +1106,53 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 }
 .black-card:not(:hover) .jet{height:0!important;opacity:0!important;animation:none!important}
 .black-card:not(:hover) .accretion{animation:none!important}
+
+
+/* BLACK HOLE v5 — solid tilted accretion plane and unmistakable lower polar jet. */
+.accretion{
+ width:166px!important;height:42px!important;
+ border:0!important;border-radius:50%!important;
+ left:50%!important;top:50%!important;
+ transform:translate(-50%,-50%) rotate(-27deg)!important;
+ background:
+   radial-gradient(ellipse 27% 40% at 50% 50%,#05030a 0 72%,transparent 75%),
+   radial-gradient(ellipse 58% 62% at 50% 50%,#fff0c1 0 9%,#ffc36e 18%,#ef873f 36%,#b65be0 58%,#60329a 74%,#27153e 100%)!important;
+ box-shadow:0 0 7px #c18aff,0 0 17px #9c5be9aa,inset 0 0 9px #ffe0a066!important;
+ border-color:transparent!important;
+ animation:none!important;
+}
+.black-card:hover .accretion{
+ width:204px!important;height:54px!important;
+ transform:translate(-50%,-50%) rotate(-27deg)!important;
+ background:
+   radial-gradient(ellipse 24% 38% at 50% 50%,#05030a 0 72%,transparent 75%),
+   radial-gradient(ellipse 60% 65% at 50% 50%,#fff8d5 0 7%,#ffe09a 14%,#ffad52 28%,#f47732 48%,#c34d2d 68%,#5a263e 100%)!important;
+ box-shadow:0 0 10px #ffb45e,0 0 25px #ff782fbb,inset 0 0 12px #fff0bd88!important;
+ animation:none!important;
+}
+.black-hole{z-index:6!important}
+.jet{display:block!important}
+.jet-top{
+ left:50%!important;right:auto!important;
+ top:auto!important;bottom:calc(50% + 20px)!important;
+ width:18px!important;height:0!important;
+ transform:translateX(-50%)!important;
+}
+.jet-bottom{
+ left:50%!important;right:auto!important;
+ top:calc(50% + 20px)!important;bottom:auto!important;
+ width:18px!important;height:0!important;
+ transform:translateX(-50%) rotate(180deg)!important;
+}
+.black-card:hover .jet-top{
+ top:auto!important;bottom:calc(50% + 20px)!important;
+ height:70px!important;opacity:1!important;
+ transform:translateX(-50%)!important;
+}
+.black-card:hover .jet-bottom{
+ top:calc(50% + 20px)!important;bottom:auto!important;
+ height:70px!important;opacity:1!important;
+ transform:translateX(-50%) rotate(180deg)!important;
+}
+.black-card:hover .jet-bottom{animation:jet-fire .62s ease-in-out .16s infinite alternate!important}
+.black-card:hover .jet-top{animation:jet-fire .62s ease-in-out infinite alternate!important}
